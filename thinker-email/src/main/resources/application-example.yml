@@ -1,0 +1,15 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    port: 25
+    username:
+    password:
+    properties:
+      mail.transport.protocol: smtp
+      mail.smtp.auth : true
+      mail.smtp.starttls.enable : true
+      mail.debug : true
+server:
+  port: 8090
+
+
