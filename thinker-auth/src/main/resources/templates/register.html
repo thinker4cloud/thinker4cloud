@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>SPT注册</title>
+  <style>
+    .tab_group {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    .tab_group .tab {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    .tab_group .tab:hover {
+      background-color: #ddd;
+    }
+
+    .tab_group .tab.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tab_content {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    input.submit {
+      border: none;
+      background-color: #ddd;
+      outline:none;
+      padding:6px 20px
+    }
+
+    input.submit:hover{
+    background-color: #ccc;
+    }
+
+  </style>
+  <script>
+
+    function init() {
+      document.getElementById('tab_username').click()
+    }
+
+    function reg(event, type) {
+      var i, tabs, tabContents;
+      tabContents = document.getElementsByClassName('tab_content');
+      for (i = 0; i < tabContents.length; ++i) {
+        tabContents[i].style.display = 'none';
+      }
+      tabs = document.getElementsByClassName('tab');
+      for (i = 0; i < tabs.length; ++i) {
+        tabs[i].className = tabs[i].className.replace(' active', '');
+      }
+      document.getElementById('tab_content_' + type).style.display = 'block';
+      event.currentTarget.className += " active";
+    }
+  </script>
+</head>
+
+<body onload="init()">
+
+
+<div class="tab_group">
+  <button id="tab_username" class="tab" onclick="reg(event,'username')">用户名注册</button>
+  <button class="tab" onclick="reg(event,'email')">邮箱注册</button>
+  <button class="tab" onclick="reg(event,'phone')">手机注册</button>
+</div>
+
+
+<div id="tab_content_username" class="tab_content">
+  <p>用户名注册</p>
+
+  <form th:action="@{/register}" name="f" method="post">
+    <p>
+      <label>用户名:</label>
+      <input type="text" name="username"/>
+    </p>
+    <p>
+      <label>密码:</label>
+      <input type="password" name="password"/>
+    </p>
+    <p>
+      <input name="submit" type="submit" value="注册" class="submit"/>
+    </p>
+    <input type="hidden" name="type" value="username">
+
+  </form>
+</div>
+
+<div id="tab_content_email" class="tab_content">
+  <form th:action="@{/register}" name="f" method="post">
+    <p>
+      <label>邮箱:</label>
+      <input type="text" name="email"/>
+    </p>
+    <p>
+      <label>密码:</label>
+      <input type="password" name="password"/>
+    </p>
+    <p>
+      <input name="submit" type="submit" value="注册" class="submit"/>
+    </p>
+
+    <input type="hidden" name="type" value="email">
+  </form>
+</div>
+
+<div id="tab_content_phone" class="tab_content">
+  <form th:action="@{/register}" name="f" method="post">
+    <p>
+      <label>手机:</label>
+      <input type="text" name="phone"/>
+    </p>
+    <button>发送验证码</button>
+    <p>
+      <label>验证码:</label>
+      <input type="password" name="verify_code"/>
+    </p>
+    <p>
+      <input name="submit" type="submit" value="注册" class="submit"/>
+    </p>
+    <input type="hidden" name="type" value="phone">
+  </form>
+</div>
+
+</body>
+</html>

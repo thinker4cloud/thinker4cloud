@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+aliyun:
+  sms:
+    regionId: cn-hangzhou
+    accessKeyId:
+    secret:
+    domain: dysmsapi.aliyuncs.com
+    action: SendSms

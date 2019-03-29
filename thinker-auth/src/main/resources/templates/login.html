@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>SPT登录</title>
+</head>
+<body onload="document.f.username.focus();">
+
+<h1>登录</h1>
+
+<form th:action="@{/login}" name="f" method="post">
+    <h2> 用户名和密码:</h2>
+    <p>
+      <label for="username">用户名</label>
+      <input type="text" id="username" name="username"/>
+    </p>
+    <p>
+      <label for="password">密码</label>
+      <input type="password" id="password" name="password"/>
+    </p>
+    <p>
+      <input name="submit" type="submit" value="登录"/>
+    </p>
+</form>
+</body>
+</html>
